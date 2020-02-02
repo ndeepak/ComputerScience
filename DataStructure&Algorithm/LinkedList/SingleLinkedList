@@ -1,0 +1,213 @@
+//WAP to make a linked list using append function, having length and display functions and also add an insert function to insert node to the list.
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+void append();
+void display();
+int length();
+void insertion();
+struct node{
+    int data;
+    struct node* address;
+};
+struct node* head=NULL;
+int main(){
+    int choice;
+    printf("Enter Your Choice to process,");
+    while(1){
+        printf("\nEnter: \n1.To Append to the list. \n2.To count the number of nodes in the list. \n3.To display/Traverse the nodes present in the Linked list. \n4.To delete node. \n5.To insert a new node to the list. \n6.To exit.\n");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:
+                append();
+                break;
+            case 2:
+                length();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                del();
+                break;
+            case 5:
+                insertion();
+                break;
+            case 6:
+                exit(1);
+                break;
+            default:
+                printf("Please Enter the valid choice to proces!!!!");
+                break;
+        }
+    }
+
+
+}
+void append()
+{
+    struct node* temp;
+    temp=(struct node*)malloc(sizeof(struct node));
+    printf("enter the data to append to the list:\n");
+    scanf("%d",&temp->data);
+    printf("%d is appended to the list\n",temp->data);
+    temp->address=NULL;
+
+    if(head==NULL)
+        {
+            head=temp;
+        }
+    else
+        {
+            struct node* ptr;
+            ptr=head;
+            while(ptr->address!=NULL)
+                {
+
+                    ptr=ptr->address;
+                }
+            ptr->address=temp;
+        }
+
+}
+
+int length()
+{
+    if(head==NULL)
+    {
+        printf("the list is empty!!\n\n");
+        return 0;
+    }
+    else
+    {
+        struct node*ptr;
+        ptr=head;
+        int counter=1;
+        while(ptr->address!=NULL)
+        {
+            ptr=ptr->address;
+            counter=counter+1;
+        }
+        printf("the list has %d nodes\n\n",counter);
+        return counter;
+    }
+}
+
+void display()
+{
+    if(head == NULL)
+        {
+            printf("Nothing to Display,the list is empty\n\n");
+        }
+    else
+        {
+            struct node* ptr;
+            ptr = head;
+            printf("The data in the list are: \n\n ");
+            while(ptr->address != NULL){
+                printf("%d -->", ptr-> data);
+                ptr=ptr->address;
+            }
+            printf("%d", ptr-> data);
+            printf("\n \n");
+        }
+
+}
+
+
+
+void del()
+{
+    int position;
+    printf("enter the position of the node you want to delete:\n");
+    scanf("%d",&position);
+    printf("%d",length());
+    if(position<=length()){
+        if(position==1){
+            struct node* ptr;
+            ptr=head;
+            head=ptr->address;
+            free(ptr);
+            printf("The node of %d position is deleted.\n",position);
+        }
+
+        else if(position==length()){
+            struct node* ptr;
+            struct node* temp;
+            ptr=head;
+            int i=1;
+            while(i<(position-1)){
+            ptr=ptr->address;
+            i++;
+            }
+            temp=ptr->address;
+            ptr->address=NULL;
+            free(temp);
+            printf("The node of %d position is deleted.\n",position);
+
+        }
+        else
+        {
+
+
+            struct node* ptr;
+            struct node* temp;
+            ptr=head;
+            int i=1;
+            while(i<(position-1)){
+            ptr=ptr->address;
+            i++;
+            }
+            temp=ptr->address;
+            ptr->address=temp->address;
+            free(temp);
+            printf("The node of %d th position is deleted.\n",position);
+
+        }
+        }}
+
+        void insertion()
+{
+    int position;
+    printf("Enter the position if the node\n");
+    scanf("%d",&position);
+    if (position>length()+1)
+        {
+            printf("\nEnter valid position\n");
+        }
+    else
+    {
+        if (position==length()+1)
+            {
+                append();
+            }
+        else
+            {
+                struct node* temp;
+                temp=(struct node*)malloc(sizeof(struct node));
+
+                printf("\nEnter the data to append to the list:\n");
+                scanf("%d",&temp->data);
+                printf("\n%d is Appended to the list.\n",temp->data);
+
+                if(position==1)
+                    {
+                        temp->address=head;
+                        head=temp;
+                    }
+                else if(position>1 && position<=length())
+                    {
+                        struct node* ptr=head;
+
+                        for(int i=0;i<position-1;i++)
+                        {
+                            ptr=ptr->address;
+                        }
+
+                        temp->address=ptr->address;
+                        ptr->address=temp;
+                    }
+            }
+    }
+
+}
