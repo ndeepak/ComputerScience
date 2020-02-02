@@ -1,0 +1,26 @@
+//Write a C program to create a list of 100 integers and access the value to store and display the data using pointer.
+
+#include<stdio.h>
+#define N 100 //max array size
+int main()
+{
+
+    int arr[N];
+    int m,i;
+    int * ptr=arr;
+    printf("Enter the number of items: \n");
+    scanf("%d", &m);
+
+    printf("Enter the elements in Array: \n");
+    for(i=0;i<m;i++)
+
+    {
+        scanf("%d" , (ptr + i));
+    }
+    printf("Array Elements: \n");
+    for(i=0;i<m;i++)
+    {
+        printf("%d " , *(ptr + i ));
+    }
+    return 0;
+}
