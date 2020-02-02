@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define N 5
+int stack[N];
+int top=-1;
+void push();
+void pop();
+void peek();
+void traverse();
+int main()
+{
+    printf("\t\t //STACK OPERATIONS USING ARRAY//\n");
+    printf("\t\t 1.PUSH\n \t\t 2.POP\n \t\t 3.PEEK\n \t\t 4.Traverse\n \t\t 5.EXIT\n");
+    while(1)
+    {
+        int choice;
+        printf("\t\t Enter the Choice: ");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+                push();
+                break;
+            case 2:
+                pop();
+                break;
+             case 3:
+                peek();
+                break;
+            case 4:
+                traverse();
+                break;
+            case 5:
+                exit(1);
+            default:
+                printf ("\n\t Please Enter a Valid Choice(1/2/3/4/5)");
+
+        }
+    }
+}
+void push()
+{
+    int x;
+    printf("\t\tEnter Data : ");
+    scanf("%d",&x);
+    if(top==N-1)
+    {
+        printf("\t\tStack Overflow\n");
+    }
+    else
+    {
+        top++;
+        stack[top]=x;
+        printf("\t\t %d is pushed.\n",x);
+    }
+}
+void pop()
+{
+    int item;
+    if(top==-1)
+    {
+        printf("\t\tStack Underflow\n");
+    }
+    else
+    {
+        item=stack[top];
+        top--;
+        printf("\t\t%d is poped\n",item);
+    }
+}
+void peek()
+{
+    if(top==-1)
+    {
+        printf("Stack Underflow\n");
+    }
+    else
+    {
+        printf("\t\t%d is peek element\n",stack[top]);
+    }
+}
+void traverse()
+{
+    int i;
+    for(i=top;i>=0;i--)
+    {
+        printf("\t\t%d\n",stack[i]);
+    }
+}
