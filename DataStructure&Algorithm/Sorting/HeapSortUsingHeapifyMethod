@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+int main(){
+    int i, n, a[20];
+    while(1){
+    printf("\nEnter the number of elements in Heap:\n");
+    scanf("%d",&n);
+    printf("Enter %d elements:\n",n);
+    for(i=1; i<=n; i++){
+        scanf("%d",&a[i]);
+        }
+    heapsort(n, a);
+    printf("The sorted elements are:\n");
+    for(i=1; i<=n; i++){
+        printf("%d\t",a[i]);
+        }
+    }
+}
+void heapify(int n,int a[]){
+    int i;
+    for(i=n/2;i>0;i--){
+        merge(i,n,a);
+    }
+}
+void heapsort(int n,int a[]){
+    int temp,i;
+    heapify(n,a);
+    for(i=n;i>0;i--){
+        temp=a[i];
+        a[i]=a[1];
+        a[1]=temp;
+        merge(1,i-1,a);
+    }
+}
+void merge(int i,int n,int a[]){
+    int j,item;
+    j=2*i;
+    item=a[i];
+    while(j<=n){
+        if((j<n)&&(a[j]<a[j+1]))
+           j++;
+        if(item>=a[j])
+            break;
+        else{
+            a[j/2]=a[j];
+            j=2*j;
+        }
+        a[j/2]=item;
+    }
+}
