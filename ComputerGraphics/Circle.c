@@ -1,7 +1,7 @@
 #include<dos.h>
 #include<stdio.h>
 #include<conio.h>
-#include<graphics.h>
+// #include<graphics.h>
 void draw_circle(int,int,int);
 void symmetry(int,int,int,int);
 void main(){
